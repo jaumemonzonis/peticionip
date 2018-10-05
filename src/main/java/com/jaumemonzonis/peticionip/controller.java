@@ -7,6 +7,8 @@ package com.jaumemonzonis.peticionip;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +60,21 @@ public class controller extends HttpServlet {
             out.println("<h1>isRequestedSessionIdFromURL : " + request.isRequestedSessionIdFromURL() + "</h1>");
             out.println("<h1>isRequestedSessionIdValid : " + request.isRequestedSessionIdValid()+ "</h1>");
             out.println("<h1>isSecure : " + request.isSecure() + "</h1>");
-             out.println("<h1>Scheme: " + request.getScheme() + "</h1>");
+            out.println("<h1>Scheme: " + request.getScheme() + "</h1>");
+            Map map = request.getParameterMap();
+            
+            out.println("<table>");
+            out.println("<h1>Entrada de parametros:</h1>");
+            for (Object key: map.keySet()){
+            
+           String clave = (String) key;
+           String[] valor= (String[]) map.get(clave);
+           out.println("<tr><td><h1>"+(String) key+"</h1></td><td><h1>"+Arrays.toString(valor)+"</td></tr></h1>");
+ 
+            }
+             
+             
+             out.println("</table>");
             out.println("</body>");
             out.println("</html>");
         }
